@@ -1,5 +1,5 @@
 <!-- =========================
-     index.html
+     index.html  (FULL + FILLED)
      ========================= -->
 <!DOCTYPE html>
 <html lang="en">
@@ -7,13 +7,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=1200, initial-scale=1.0, maximum-scale=1.0">
 
-
-  
-
   <!-- Main stylesheet -->
   <link rel="stylesheet" href="style.css">
   <!-- Main JS (page transitions + backgrounds + slider + effects) -->
   <script defer src="script.js"></script>
+
   <title>Portfolio — Welcome</title>
 </head>
 
@@ -29,43 +27,88 @@
 
       <!-- Intro text -->
       <h1 class="hero-title">Welcome to My Portfolio</h1>
-      <p class="hero-subtitle">Explore my IT and Hospitality careers.</p>
+      <p class="hero-subtitle">
+        A space where I share my <strong>IT</strong> and <strong>Hospitality</strong> journeys — skills, projects, and growth.
+      </p>
 
       <!-- Navigation buttons -->
       <div class="hero-buttons">
         <button onclick="goToPage('it.html')" class="hero-btn primary-btn">IT Career</button>
         <button onclick="goToPage('hospitality.html')" class="hero-btn secondary-btn">Hospitality Career</button>
       </div>
+
+      <!-- ✅ extra line you requested -->
+      <p class="hero-subtitle" style="margin-top:18px; font-size:16px; opacity:0.85;">
+        Visit my <strong>IT</strong> and <strong>Hospitality</strong> pages to know more about myself.
+      </p>
+
+      <p class="hero-tags">
+        Curious <span class="dot">·</span>
+        Reliable <span class="dot">·</span>
+        Analytical <span class="dot">·</span>
+        Driven
+      </p>
+
+
+      <!-- scroll hint -->
+      <div class="home-scroll-hint" aria-hidden="true">
+        <span class="home-scroll-dot"></span>
+      </div>
     </div>
   </section>
 
   <!-- FEATURE / INFO CARDS -->
   <section class="feature-section">
-    <!-- Content blocks you can fill in later -->
+
     <div class="feature-card">
       <h2>Quotes I Like</h2>
-      <p>My quotes will go here...</p>
+      <p>
+        “Discipline beats motivation.”<br>
+        “Small progress every day adds up.”<br>
+        “Stay curious — keep building.”
+      </p>
     </div>
 
     <div class="feature-card">
       <h2>My Future Goal</h2>
-      <p>My future goal...</p>
+      <p>
+        To grow into a strong full-stack developer, build real-world systems, and create products that genuinely help people.
+      </p>
     </div>
 
     <div class="feature-card">
       <h2>Things I Find Interesting</h2>
-      <p>My content...</p>
+      <p>
+        AI + automation, clean UI design, system architecture, APIs, problem-solving challenges, and building useful tools.
+      </p>
     </div>
 
     <div class="feature-card">
       <h2>What I'm Learning Right Now</h2>
-      <p>My content...</p>
+      <p>
+        Better backend structure, API design with FastAPI, clean React components, and writing code that is easy to maintain.
+      </p>
     </div>
 
     <div class="feature-card">
       <h2>A Riddle For You</h2>
-      <p>My riddle...</p>
+      <p>
+        I speak without a mouth and hear without ears.<br>
+        I have no body, but I come alive with wind.<br>
+        What am I?
+        <br><br>
+        (Answer: an echo)
+      </p>
     </div>
+
+    <div class="feature-card">
+      <h2>Quick Note</h2>
+      <p>
+        If you want the full story, click into the pages above —
+        my IT page shows my projects + learning journey, and my Hospitality page shows my real-world teamwork and service experience.
+      </p>
+    </div>
+
   </section>
 
 </body>

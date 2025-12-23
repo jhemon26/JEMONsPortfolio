@@ -1,5 +1,5 @@
 <!-- =========================
-     Hospitality.html
+     hospitality.html
      ========================= -->
 <!DOCTYPE html>
 <html lang="en">
@@ -7,28 +7,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=1200, initial-scale=1.0, maximum-scale=1.0">
 
-
-  
-
-  
-  <!-- Main stylesheet -->
   <link rel="stylesheet" href="style.css" />
-  <!-- Main JS (page transitions + snowfall) -->
   <script defer src="script.js"></script>
+
   <title>My Hospitality Career</title>
 </head>
 
 <body class="fade-in hospitality-page general-dark">
 
-  <!-- ❄️ Snow canvas background (hospitality only) -->
+  <!-- ❄️ Snow canvas background -->
   <canvas id="snowfield-canvas" class="bg-canvas"></canvas>
 
   <!-- HERO -->
   <section class="hos-hero reveal">
-    <!-- Soft glow -->
     <div class="hos-aura"></div>
 
-    <!-- Floating petals decoration -->
     <div class="hos-petals">
       <span class="hos-petal left" style="animation-duration:18s;"></span>
       <span class="hos-petal left" style="animation-duration:24s; animation-delay:6s;"></span>
@@ -36,23 +29,28 @@
       <span class="hos-petal right" style="animation-duration:26s; animation-delay:10s;"></span>
     </div>
 
-    <!-- Heading -->
     <h1 class="hos-title">Welcome to My Hospitality Journey</h1>
-    <p class="hos-subtitle">Service, teamwork, leadership, and unforgettable guest experiences.</p>
+    <p class="hos-subtitle">
+      Service, teamwork, leadership, and unforgettable guest experiences.
+    </p>
 
-    <!-- Quick stats row -->
+    <!-- STATS -->
     <div class="hos-hero-stats">
-      <div class="hos-stat">
-        <div class="hos-stat-num">5+</div>
-        <div class="hos-stat-label">Core Skills</div>
+
+      <!-- CLICKABLE SKILL -->
+      <div class="hos-stat" onclick="openHosSkill()" style="cursor:pointer">
+        <div class="hos-stat-num">3+ Years</div>
+        <div class="hos-stat-label">Skills</div>
       </div>
+
       <div class="hos-stat">
         <div class="hos-stat-num">10+</div>
         <div class="hos-stat-label">Key Moments</div>
       </div>
+
       <div class="hos-stat">
         <div class="hos-stat-num">∞</div>
-        <div class="hos-stat-label">Learning</div>
+        <div class="hos-stat-label">Improvement</div>
       </div>
     </div>
   </section>
@@ -62,25 +60,30 @@
 
     <div class="hos-card">
       <h2>About My Hospitality Career</h2>
-      <p>will update text here...</p>
+      <p>
+        Hospitality taught me how to stay calm under pressure, communicate clearly,
+        and deliver consistent service even during busy periods.
+      </p>
     </div>
 
-    <!-- Two-column area -->
     <div class="hos-grid">
       <div class="hos-card">
         <h2>What I Enjoy Most</h2>
-        <p>will update text here...</p>
+        <p>
+          I enjoy teamwork, fast-paced environments, and creating positive guest experiences.
+        </p>
       </div>
 
       <div class="hos-card">
         <h2>What I’m Proud Of</h2>
-        <p>will update text here...</p>
+        <p>
+          Handling responsibility, staying organised, and supporting the team during pressure.
+        </p>
       </div>
     </div>
 
     <div class="hos-card">
       <h2>Skills I Use Daily</h2>
-      <!-- Skill chips -->
       <div class="hos-chips">
         <span class="hos-chip">Customer Service</span>
         <span class="hos-chip">Teamwork</span>
@@ -92,55 +95,49 @@
     </div>
 
     <div class="hos-card">
-      <h2>Key Moments</h2>
-
-      <!-- Timeline / moments list -->
-      <div class="hos-moments">
-        <div class="hos-moment">
-          <div class="hos-moment-dot"></div>
-          <div class="hos-moment-body">
-            <h3>High-Pressure Shift</h3>
-            <p>will update text here...</p>
-          </div>
-        </div>
-
-        <div class="hos-moment">
-          <div class="hos-moment-dot"></div>
-          <div class="hos-moment-body">
-            <h3>Handling Guest Issues</h3>
-            <p>will update text here...</p>
-          </div>
-        </div>
-
-        <div class="hos-moment">
-          <div class="hos-moment-dot"></div>
-          <div class="hos-moment-body">
-            <h3>Supporting New Staff</h3>
-            <p>will update text here...</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="hos-card">
       <h2>My Future Goals</h2>
-      <p>will update text here...</p>
+      <p>
+        To continue improving leadership, efficiency, and consistency while supporting strong teams.
+      </p>
     </div>
 
-    <!-- Two-column closing area -->
     <div class="hos-grid">
       <div class="hos-card">
         <h2>Question For You</h2>
-        <p>will update text here...</p>
+        <p>
+          What makes a hospitality experience truly memorable for you?
+        </p>
       </div>
 
       <div class="hos-card">
         <h2>Connect With Me</h2>
-        <p>will update text here...</p>
+        <p>Let’s connect and share experiences.</p>
+
+        <div class="hos-chips">
+          <a class="hos-chip" href="#">Facebook</a>
+          <a class="hos-chip" href="#">LinkedIn</a>
+          <a class="hos-chip" href="#">GitHub</a>
+          <a class="hos-chip" href="#">Email</a>
+        </div>
       </div>
     </div>
 
   </section>
+
+  <!-- ✅ HOSPITALITY SKILL MODAL -->
+  <div class="it-modal-overlay" id="hosSkillModal">
+    <div class="it-modal">
+      <h3>Chef de Partie</h3>
+      <p>
+        <strong>Chef de Partie</strong><br>
+        <strong>3 Years Experience</strong><br>
+        <strong>The Royal Oak, London</strong><br><br>
+        Worked in a high-pressure kitchen environment,
+        leading a section and supporting team consistency.
+      </p>
+      <button class="it-modal-close" onclick="closeHosSkill()">Close</button>
+    </div>
+  </div>
 
 </body>
 </html>
