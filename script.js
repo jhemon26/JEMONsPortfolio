@@ -4,6 +4,50 @@
    ========================= */
 
 
+
+
+   /* =========================================================
+   HARD RESET VIEW (iOS Safari fix: opens centered/correct)
+========================================================= */
+
+(function hardResetViewSetup(){
+  function hardResetView(){
+    // temporarily lock overflow so Safari can't keep sideways offset
+    const prevOverflowX = document.documentElement.style.overflowX;
+    const prevOverflowY = document.documentElement.style.overflowY;
+    document.documentElement.style.overflowX = "hidden";
+    document.documentElement.style.overflowY = "hidden";
+
+    // reset scroll both axes
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    document.documentElement.scrollLeft = 0;
+    document.body.scrollLeft = 0;
+
+    // restore overflow (your CSS controls it after)
+    requestAnimationFrame(() => {
+      document.documentElement.style.overflowX = prevOverflowX;
+      document.documentElement.style.overflowY = prevOverflowY;
+    });
+  }
+
+  // run early + after layout settles
+  document.addEventListener("DOMContentLoaded", () => {
+    hardResetView();
+    setTimeout(hardResetView, 80);
+    setTimeout(hardResetView, 220);
+    setTimeout(hardResetView, 500);
+  });
+
+  // VERY IMPORTANT for iOS Safari bfcache/back-forward restore
+  window.addEventListener("pageshow", () => {
+    hardResetView();
+    setTimeout(hardResetView, 120);
+  });
+})();
+
+
 /* =========================================================
    1) PAGE CHANGE (fade out then go) + RESET VIEW
 ========================================================= */
@@ -22,12 +66,17 @@ function resetView() {
 }
 
 function goToPage(page) {
-  resetView();
+  // hard reset before leaving page (prevents Safari offset bug)
+  window.scrollTo(0, 0);
+  document.documentElement.scrollLeft = 0;
+  document.body.scrollLeft = 0;
+
   document.body.classList.add("fade-out");
   setTimeout(() => {
     window.location.href = page;
   }, 500);
 }
+
 
 document.addEventListener("DOMContentLoaded", () => {
   resetView();
