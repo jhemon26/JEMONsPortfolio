@@ -1347,3 +1347,239 @@ body.hospitality-page .hos-moment-dot{
     transform: translateY(-6px) !important;
   }
 }
+
+
+
+
+
+/* =========================================================
+   IT CLICK-TO-REVEAL CARDS (CLEAN VERSION)
+   - expands on click
+   - typewriter caret while typing
+   - auto collapse after 10s (JS)
+========================================================= */
+
+.it-card-expandable{
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+
+  /* smooth resizing only when JS sets height */
+  transition:
+    height 420ms ease,
+    transform 300ms ease,
+    box-shadow 300ms ease,
+    background 300ms ease,
+    border-color 300ms ease;
+}
+
+/* keep hover exactly like normal .it-card hover (your existing styles handle it) */
+.it-card-expandable:hover{}
+
+/* the two faces (front/back) */
+.it-card-expandable .it-card-face{
+  transition: transform 420ms ease, opacity 420ms ease;
+  will-change: transform, opacity;
+}
+
+/* FRONT (default view) */
+.it-card-expandable .it-card-front{
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.it-card-expandable .it-hint{
+  color: rgba(166,173,200,0.85);
+  font-size: 16px;   /* match your normal card text size */
+  line-height: 1.5;
+  opacity: 0.9;
+  margin-top: 6px;
+}
+
+/* BACK (hidden overlay) */
+.it-card-expandable .it-card-back{
+  position: absolute;
+  inset: 0;
+  padding: 24px 20px; /* same as .it-card padding */
+  opacity: 0;
+  transform: translateX(26px);
+  pointer-events: none;
+}
+
+/* OPEN: slide front out and back in */
+.it-card-expandable.is-open .it-card-front{
+  opacity: 0;
+  transform: translateX(-26px);
+}
+
+.it-card-expandable.is-open .it-card-back{
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+/* CLICKED look (only when selected) */
+.it-card-expandable.is-selected{
+  transform: translateY(-6px);
+  box-shadow: 0 0 34px rgba(150, 100, 255, 0.35);
+  border-color: rgba(180, 140, 255, 0.85);
+}
+
+/* typed text */
+.it-card-expandable .it-typed{
+  margin-top: 10px;
+  color: #a6adc8;
+  font-size: 16px;
+  line-height: 1.55;
+  opacity: 0.95;
+  white-space: pre-wrap;
+}
+
+/* caret while typing */
+.it-card-expandable.is-typing .it-typed::after{
+  content: "▍";
+  margin-left: 4px;
+  opacity: 0.85;
+  animation: caretBlink 0.85s infinite;
+}
+
+@keyframes caretBlink{
+  0%, 100%{ opacity: 0.2; }
+  50%{ opacity: 0.95; }
+}
+
+
+
+/* =========================================================
+   FIX TIMELINE LINE + DOTS (dots were being clipped)
+========================================================= */
+
+/* allow timeline dots (pseudo-elements) to show outside the card */
+.it-card-expandable{
+  overflow: visible !important;
+}
+
+/* ensure correct stacking order: line behind, cards + dots above */
+.it-section{ position: relative; }
+.it-section::before{ z-index: 0; }
+
+.it-card{ position: relative; z-index: 1; }
+.it-card::before{ z-index: 2; }
+
+/* keep the sliding faces clipped nicely without clipping the dot */
+.it-card-expandable .it-card-front,
+.it-card-expandable .it-card-back{
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+
+
+/* =========================================================
+   IT END SECTION (center the last 2 cards)
+========================================================= */
+
+.it-end-wrap{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 34px;
+}
+
+.it-end-stack{
+  width: 900px;
+  max-width: 92%;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* make these centered cards match timeline card style */
+.it-end-stack .it-card{
+  width: 100% !important;
+  align-self: center !important;
+  margin: 0 !important;
+}
+
+/* =========================================================
+   CONNECT BUTTONS (unique glowing pill buttons)
+========================================================= */
+
+.it-connect-text{
+  margin-top: 6px;
+}
+
+.it-connect-actions{
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.it-social-btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 14px;
+  border-radius: 14px;
+
+  border: 1px solid rgba(55, 41, 74, 0.75);
+  background: rgba(22,22,31,0.55);
+  backdrop-filter: blur(10px);
+
+  color: rgba(230,230,255,.88);
+  text-decoration: none;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease, background .22s ease;
+}
+
+.it-social-btn .it-social-dot{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(203,166,247,0.9);
+  box-shadow: 0 0 12px rgba(203,166,247,0.6);
+  flex: 0 0 auto;
+}
+
+.it-social-btn:hover{
+  transform: translateY(-3px);
+  background: rgba(203,166,247,0.12);
+  border-color: rgba(203,166,247,0.85);
+  box-shadow: 0 0 18px rgba(203,166,247,0.35);
+}
+
+/* per-platform subtle vibe */
+.it-social-btn.fb:hover      { box-shadow: 0 0 18px rgba(59, 89, 152, 0.35); }
+.it-social-btn.li:hover      { box-shadow: 0 0 18px rgba(10, 102, 194, 0.35); }
+.it-social-btn.tw:hover      { box-shadow: 0 0 18px rgba(29, 161, 242, 0.35); }
+.it-social-btn.mail:hover    { box-shadow: 0 0 18px rgba(255, 214, 160, 0.35); }
+.it-social-btn.gh:hover      { box-shadow: 0 0 18px rgba(231, 238, 255, 0.22); }
+
+/* keep nice on small screens */
+@media (max-width: 520px){
+  .it-social-btn{ width: 100%; justify-content: center; }
+}
+
+
+
+
+
+/* =========================================================
+   FIX: "Cut corner" after JS typing/resize
+   Cause: overflow:hidden on the OUTER card clips rounded edges during height animation
+   Solution: outer card = visible, inner faces = hidden
+========================================================= */
+
+body.it-page .it-card.it-card-expandable{
+  overflow: visible !important;   /* stops corner/glow clipping */
+}
+
+/* keep the slide animation clean by clipping only the inside */
+body.it-page .it-card.it-card-expandable .it-card-face{
+  overflow: hidden;
+  border-radius: inherit;
+}

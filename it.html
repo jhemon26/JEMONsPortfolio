@@ -8,9 +8,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=1200, initial-scale=1.0, maximum-scale=1.0">
 
-
-
-
   <!-- main styles -->
   <link rel="stylesheet" href="style.css">
 
@@ -48,10 +45,8 @@
 
   <!-- =========================
        SKILLS (top strip + pyramid)
-       (coding skills -> frameworks -> tools)
   ========================= -->
 
-  <!-- coding skills -->
   <div class="it-skills-line">
     <div class="it-skill-unit"><span>Python</span><img src="assets/icons8-python-50.png" class="it-skill-icon" alt="Python"></div>
     <div class="it-skill-unit"><span>C</span><img src="assets/cprogramming.png" class="it-skill-icon" alt="C"></div>
@@ -60,10 +55,7 @@
     <div class="it-skill-unit"><span>SQL</span><img src="assets/icons8-sql-26.png" class="it-skill-icon" alt="SQL"></div>
   </div>
 
-  <!-- pyramid -->
   <div class="it-skills-pyramid">
-
-    <!-- frameworks -->
     <div class="it-skill-row">
       <div class="it-skill-unit"><span>FastAPI</span><img src="assets/icons8-rest-api-64.png" class="it-skill-icon" alt="FastAPI"></div>
       <div class="it-skill-unit"><span>Django</span><img src="assets/django.png" class="it-skill-icon" alt="Django"></div>
@@ -71,54 +63,86 @@
       <div class="it-skill-unit"><span>React</span><img src="assets/react.png" class="it-skill-icon" alt="React"></div>
     </div>
 
-    <!-- tools / general -->
     <div class="it-skill-row">
       <div class="it-skill-unit"><span>Backend</span><img src="assets/icons8-developer-64 (1).png" class="it-skill-icon" alt="Backend"></div>
       <div class="it-skill-unit"><span>Developer</span><img src="assets/icons8-developer-64.png" class="it-skill-icon" alt="Developer"></div>
       <div class="it-skill-unit"><span>DevOps</span><img src="assets/devops.png" class="it-skill-icon" alt="DevOps"></div>
     </div>
 
-    <!-- extra -->
     <div class="it-skill-row">
       <div class="it-skill-unit"><span>App Dev</span><img src="assets/appdev.png" class="it-skill-icon" alt="App Dev"></div>
       <div class="it-skill-unit"><span>GitHub</span><img src="assets/github.png" class="it-skill-icon" alt="GitHub"></div>
     </div>
 
-    <!-- special -->
     <div class="it-skill-row">
       <div class="it-skill-unit"><span>Machine Learning</span><img src="assets/machinelearnign.png" class="it-skill-icon" alt="Machine Learning"></div>
     </div>
-
   </div>
 
   <!-- =========================
-       TIMELINE CONTENT
+       TIMELINE CONTENT (cards + sliders)
   ========================= -->
   <section class="it-section reveal">
 
-    <div class="it-card">
-      <h2>About My IT Career</h2>
-      <p>would write text here...</p>
+    <!-- Click-to-view cards -->
+    <div class="it-card it-card-expandable"
+         data-type-text="I’m a passionate software engineer who enjoys building clean, reliable systems. I like solving problems and turning ideas into real products.">
+      <div class="it-card-face it-card-front">
+        <h2>About My IT Career</h2>
+        <p class="it-hint">Click to view</p>
+      </div>
+      <div class="it-card-face it-card-back">
+        <h2>About My IT Career</h2>
+        <p class="it-typed"></p>
+      </div>
     </div>
 
-    <div class="it-card">
-      <h2>Why I Am Doing IT</h2>
-      <p>would write text here...</p>
+    <div class="it-card it-card-expandable"
+         data-type-text="I chose IT because I enjoy creativity + logic together. I like learning how things work, building solutions, and improving systems over time.">
+      <div class="it-card-face it-card-front">
+        <h2>Why I Am Doing IT</h2>
+        <p class="it-hint">Click to view</p>
+      </div>
+      <div class="it-card-face it-card-back">
+        <h2>Why I Am Doing IT</h2>
+        <p class="it-typed"></p>
+      </div>
     </div>
 
-    <div class="it-card">
-      <h2>My Future Goals</h2>
-      <p>would write text here...</p>
+    <div class="it-card it-card-expandable"
+         data-type-text="My goal is to become a strong full-stack developer and eventually work on large real-world systems. I want to build products that help people.">
+      <div class="it-card-face it-card-front">
+        <h2>My Future Goals</h2>
+        <p class="it-hint">Click to view</p>
+      </div>
+      <div class="it-card-face it-card-back">
+        <h2>My Future Goals</h2>
+        <p class="it-typed"></p>
+      </div>
     </div>
 
-    <div class="it-card">
-      <h2>Things I'm Learning Right Now</h2>
-      <p>would write text here...</p>
+    <div class="it-card it-card-expandable"
+         data-type-text="Right now I’m improving my backend skills, learning better architecture, and practising building APIs and clean front-end components.">
+      <div class="it-card-face it-card-front">
+        <h2>Things I'm Learning Right Now</h2>
+        <p class="it-hint">Click to view</p>
+      </div>
+      <div class="it-card-face it-card-back">
+        <h2>Things I'm Learning Right Now</h2>
+        <p class="it-typed"></p>
+      </div>
     </div>
 
-    <div class="it-card">
-      <h2>Things I Have Learned</h2>
-      <p>would write text here...</p>
+    <div class="it-card it-card-expandable"
+         data-type-text="I’ve learned programming fundamentals, data structures, debugging, teamwork, and how to complete projects from idea to finished result.">
+      <div class="it-card-face it-card-front">
+        <h2>Things I Have Learned</h2>
+        <p class="it-hint">Click to view</p>
+      </div>
+      <div class="it-card-face it-card-back">
+        <h2>Things I Have Learned</h2>
+        <p class="it-typed"></p>
+      </div>
     </div>
 
     <!-- =========================
@@ -135,11 +159,11 @@
             <h3>Family Tree System (Python)</h3>
             <p>
               A genealogy tracking system to store family member details, search relatives,
-              match birthdays/death dates, and explore immediate & extended family connections.
+              match birthdays/death dates, and explore immediate &amp; extended family connections.
             </p>
             <div class="project-actions">
               <a href="#" class="project-btn ghost" onclick="openLiveModal(event)">Live</a>
-              <a href="https://github.com/jhemon26/COMP1811_Family_tree_project-Python-" class="project-btn" target="_blank">Code</a>
+              <a href="https://github.com/jhemon26/COMP1811_Family_tree_project-Python-" class="project-btn" target="_blank" rel="noopener">Code</a>
             </div>
           </article>
 
@@ -151,7 +175,7 @@
             </p>
             <div class="project-actions">
               <a href="#" class="project-btn ghost" onclick="openLiveModal(event)">Live</a>
-              <a href="https://github.com/jhemon26/COMP1811_Scheme_Family-Tree-Project" class="project-btn" target="_blank">Code</a>
+              <a href="https://github.com/jhemon26/COMP1811_Scheme_Family-Tree-Project" class="project-btn" target="_blank" rel="noopener">Code</a>
             </div>
           </article>
 
@@ -163,7 +187,7 @@
             </p>
             <div class="project-actions">
               <a href="#" class="project-btn ghost" onclick="openLiveModal(event)">Live</a>
-              <a href="https://github.com/jhemon26/Boolean-Calculator-using-Bison-and-Flex" class="project-btn" target="_blank">Code</a>
+              <a href="https://github.com/jhemon26/Boolean-Calculator-using-Bison-and-Flex" class="project-btn" target="_blank" rel="noopener">Code</a>
             </div>
           </article>
 
@@ -175,7 +199,7 @@
             </p>
             <div class="project-actions">
               <a href="#" class="project-btn ghost" onclick="openLiveModal(event)">Live</a>
-              <a href="https://github.com/jhemon26/COMP-1827-Handwritten-Digit-Recognition-AI" class="project-btn" target="_blank">Code</a>
+              <a href="https://github.com/jhemon26/COMP-1827-Handwritten-Digit-Recognition-AI" class="project-btn" target="_blank" rel="noopener">Code</a>
             </div>
           </article>
 
@@ -187,7 +211,7 @@
             </p>
             <div class="project-actions">
               <a href="#" class="project-btn ghost" onclick="openLiveModal(event)">Live</a>
-              <a href="https://github.com/jhemon26/Designing-developing-and-testing-solutions-for-the-London-Underground-system" class="project-btn" target="_blank">Code</a>
+              <a href="https://github.com/jhemon26/Designing-developing-and-testing-solutions-for-the-London-Underground-system" class="project-btn" target="_blank" rel="noopener">Code</a>
             </div>
           </article>
 
@@ -197,9 +221,7 @@
       <button class="projects-nav-wide next" type="button" aria-label="Next project">›</button>
     </div>
 
-    <!-- dots for slider 1 -->
     <div class="projects-wide-dots" aria-label="Projects done pagination"></div>
-
 
     <!-- =========================
          SLIDER 2: WORKING ON
@@ -261,25 +283,60 @@
       <button class="projects-nav-wide next" type="button" aria-label="Next project">›</button>
     </div>
 
-    <!-- dots for slider 2 -->
     <div class="projects-wide-dots" aria-label="Projects working pagination"></div>
 
+    <!-- =========================
+         END SECTION (CENTERED)
+    ========================= -->
+    <div class="it-end-wrap">
+      <div class="it-end-stack">
 
-    <div class="it-card">
-      <h2>Question For You</h2>
-      <p>I would write text here...</p>
-    </div>
+        <div class="it-card it-card-expandable"
+             data-type-text="What kind of projects do you like the most — apps, websites, games, or something else?">
+          <div class="it-card-face it-card-front">
+            <h2>Question For You</h2>
+            <p class="it-hint">Click to view</p>
+          </div>
+          <div class="it-card-face it-card-back">
+            <h2>Question For You</h2>
+            <p class="it-typed"></p>
+          </div>
+        </div>
 
-    <div class="it-card">
-      <h2>Connect With Me</h2>
-      <p>I would write text here...</p>
+        <div class="it-card">
+          <h2>Connect With Me</h2>
+          <p class="it-connect-text">Pick a platform below — I’d love to connect.</p>
+
+          <div class="it-connect-actions">
+            <a class="it-social-btn fb" href="https://facebook.com/YOUR_USERNAME" target="_blank" rel="noopener">
+              <span class="it-social-dot"></span> Facebook
+            </a>
+
+            <a class="it-social-btn li" href="https://www.linkedin.com/in/YOUR_USERNAME/" target="_blank" rel="noopener">
+              <span class="it-social-dot"></span> LinkedIn
+            </a>
+
+            <a class="it-social-btn tw" href="https://twitter.com/YOUR_USERNAME" target="_blank" rel="noopener">
+              <span class="it-social-dot"></span> Twitter / X
+            </a>
+
+            <a class="it-social-btn mail" href="mailto:YOUR_EMAIL@gmail.com">
+              <span class="it-social-dot"></span> Email Me
+            </a>
+
+            <a class="it-social-btn gh" href="https://github.com/YOUR_USERNAME" target="_blank" rel="noopener">
+              <span class="it-social-dot"></span> GitHub
+            </a>
+          </div>
+        </div>
+
+      </div>
     </div>
 
   </section>
 
   <!-- =========================
        LIVE BUTTON POPUP (modal)
-       (works for both sliders)
   ========================= -->
   <div class="it-modal-overlay" id="liveModal">
     <div class="it-modal">
