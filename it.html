@@ -1,0 +1,294 @@
+<!-- =========================
+     IT.html
+     ========================= -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- main styles -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- main js (starfield + sliders + modal etc) -->
+  <script defer src="script.js"></script>
+
+  <title>My IT Career</title>
+</head>
+
+<body class="fade-in it-page">
+
+  <!-- background stars -->
+  <canvas id="starfield-canvas" class="bg-canvas"></canvas>
+
+  <!-- =========================
+       HERO
+  ========================= -->
+  <section class="it-hero reveal">
+    <div class="it-moon"></div>
+    <div class="it-bat"></div>
+
+    <!-- orb decoration -->
+    <div class="neural-orb-wrap" aria-hidden="true">
+      <div class="neural-orb">
+        <span class="orb-dot d1"></span>
+        <span class="orb-dot d2"></span>
+        <span class="orb-dot d3"></span>
+        <span class="orb-dot d4"></span>
+      </div>
+    </div>
+
+    <h1 class="it-title">My IT Career Journey</h1>
+    <p class="it-subtitle">Exploring technology, creativity, and innovation.</p>
+  </section>
+
+  <!-- =========================
+       SKILLS (top strip + pyramid)
+       (coding skills -> frameworks -> tools)
+  ========================= -->
+
+  <!-- coding skills -->
+  <div class="it-skills-line">
+    <div class="it-skill-unit"><span>Python</span><img src="assets/icons8-python-50.png" class="it-skill-icon" alt="Python"></div>
+    <div class="it-skill-unit"><span>C</span><img src="assets/cprogramming.png" class="it-skill-icon" alt="C"></div>
+    <div class="it-skill-unit"><span>JavaScript</span><img src="assets/javascript.png" class="it-skill-icon" alt="JavaScript"></div>
+    <div class="it-skill-unit"><span>Scheme</span><img src="assets/icons8-lambda-50.png" class="it-skill-icon" alt="Scheme"></div>
+    <div class="it-skill-unit"><span>SQL</span><img src="assets/icons8-sql-26.png" class="it-skill-icon" alt="SQL"></div>
+  </div>
+
+  <!-- pyramid -->
+  <div class="it-skills-pyramid">
+
+    <!-- frameworks -->
+    <div class="it-skill-row">
+      <div class="it-skill-unit"><span>FastAPI</span><img src="assets/icons8-rest-api-64.png" class="it-skill-icon" alt="FastAPI"></div>
+      <div class="it-skill-unit"><span>Django</span><img src="assets/django.png" class="it-skill-icon" alt="Django"></div>
+      <div class="it-skill-unit"><span>Node.js</span><img src="assets/nodejs.png" class="it-skill-icon" alt="Node.js"></div>
+      <div class="it-skill-unit"><span>React</span><img src="assets/react.png" class="it-skill-icon" alt="React"></div>
+    </div>
+
+    <!-- tools / general -->
+    <div class="it-skill-row">
+      <div class="it-skill-unit"><span>Backend</span><img src="assets/icons8-developer-64 (1).png" class="it-skill-icon" alt="Backend"></div>
+      <div class="it-skill-unit"><span>Developer</span><img src="assets/icons8-developer-64.png" class="it-skill-icon" alt="Developer"></div>
+      <div class="it-skill-unit"><span>DevOps</span><img src="assets/devops.png" class="it-skill-icon" alt="DevOps"></div>
+    </div>
+
+    <!-- extra -->
+    <div class="it-skill-row">
+      <div class="it-skill-unit"><span>App Dev</span><img src="assets/appdev.png" class="it-skill-icon" alt="App Dev"></div>
+      <div class="it-skill-unit"><span>GitHub</span><img src="assets/github.png" class="it-skill-icon" alt="GitHub"></div>
+    </div>
+
+    <!-- special -->
+    <div class="it-skill-row">
+      <div class="it-skill-unit"><span>Machine Learning</span><img src="assets/machinelearnign.png" class="it-skill-icon" alt="Machine Learning"></div>
+    </div>
+
+  </div>
+
+  <!-- =========================
+       TIMELINE CONTENT
+  ========================= -->
+  <section class="it-section reveal">
+
+    <div class="it-card">
+      <h2>About My IT Career</h2>
+      <p>Your text here...</p>
+    </div>
+
+    <div class="it-card">
+      <h2>Why I Am Doing IT</h2>
+      <p>Your text here...</p>
+    </div>
+
+    <div class="it-card">
+      <h2>My Future Goals</h2>
+      <p>Your text here...</p>
+    </div>
+
+    <div class="it-card">
+      <h2>Things I'm Learning Right Now</h2>
+      <p>Your text here...</p>
+    </div>
+
+    <div class="it-card">
+      <h2>Things I Have Learned</h2>
+      <p>Your text here...</p>
+    </div>
+
+    <!-- =========================
+         SLIDER 1: DONE PROJECTS
+    ========================= -->
+    <div class="projects-wide" aria-label="Projects done slider">
+      <button class="projects-nav-wide prev" type="button" aria-label="Previous project">‹</button>
+
+      <div class="projects-wide-viewport">
+        <div class="projects-wide-track">
+
+          <article class="projects-wide-card">
+            <h3 class="projects-card-heading">Projects I Have Done So Far</h3>
+            <h3>Family Tree System (Python)</h3>
+            <p>
+              A genealogy tracking system to store family member details, search relatives,
+              match birthdays/death dates, and explore immediate & extended family connections.
+            </p>
+            <div class="project-actions">
+              <a href="#" class="project-btn ghost" onclick="openLiveModal(event)">Live</a>
+              <a href="https://github.com/jhemon26/COMP1811_Family_tree_project-Python-" class="project-btn" target="_blank">Code</a>
+            </div>
+          </article>
+
+          <article class="projects-wide-card">
+            <h3>Family Tree System (Scheme)</h3>
+            <p>
+              Functional-programming version built in Scheme with recursive relationship searching,
+              date filtering, and ancestry analysis.
+            </p>
+            <div class="project-actions">
+              <a href="#" class="project-btn ghost" onclick="openLiveModal(event)">Live</a>
+              <a href="https://github.com/jhemon26/COMP1811_Scheme_Family-Tree-Project" class="project-btn" target="_blank">Code</a>
+            </div>
+          </article>
+
+          <article class="projects-wide-card">
+            <h3>Boolean Calculator — C, Flex &amp; Bison</h3>
+            <p>
+              Compiler-style boolean expression calculator using tokenization + parsing with Flex &amp; Bison.
+              Supports custom operators and expressions.
+            </p>
+            <div class="project-actions">
+              <a href="#" class="project-btn ghost" onclick="openLiveModal(event)">Live</a>
+              <a href="https://github.com/jhemon26/Boolean-Calculator-using-Bison-and-Flex" class="project-btn" target="_blank">Code</a>
+            </div>
+          </article>
+
+          <article class="projects-wide-card">
+            <h3>Handwritten Digit Recognition AI</h3>
+            <p>
+              A CNN-based machine learning model trained to recognise handwritten digits.
+              Built using Python and deep learning tools.
+            </p>
+            <div class="project-actions">
+              <a href="#" class="project-btn ghost" onclick="openLiveModal(event)">Live</a>
+              <a href="https://github.com/jhemon26/COMP-1827-Handwritten-Digit-Recognition-AI" class="project-btn" target="_blank">Code</a>
+            </div>
+          </article>
+
+          <article class="projects-wide-card">
+            <h3>London Underground Journey Planner</h3>
+            <p>
+              A real-time route planning system using London Underground station data,
+              providing optimised journeys similar to Google Maps pathfinding.
+            </p>
+            <div class="project-actions">
+              <a href="#" class="project-btn ghost" onclick="openLiveModal(event)">Live</a>
+              <a href="https://github.com/jhemon26/Designing-developing-and-testing-solutions-for-the-London-Underground-system" class="project-btn" target="_blank">Code</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <button class="projects-nav-wide next" type="button" aria-label="Next project">›</button>
+    </div>
+
+    <!-- dots for slider 1 -->
+    <div class="projects-wide-dots" aria-label="Projects done pagination"></div>
+
+
+    <!-- =========================
+         SLIDER 2: WORKING ON
+    ========================= -->
+    <div class="projects-wide" aria-label="Projects working slider">
+      <button class="projects-nav-wide prev" type="button" aria-label="Previous project">‹</button>
+
+      <div class="projects-wide-viewport">
+        <div class="projects-wide-track">
+
+          <article class="projects-wide-card">
+            <h3 class="projects-card-heading">Projects I'm Working On</h3>
+            <h3>On-screen German → English Reading App</h3>
+            <p>
+              An on-screen translator that reads German text and shows English output in a smooth real-time way.
+            </p>
+            <div class="project-actions">
+              <a href="#" class="project-btn ghost" onclick="openLiveModal(event)">Live</a>
+              <a href="#" class="project-btn" onclick="openLiveModal(event)">Details</a>
+            </div>
+          </article>
+
+          <article class="projects-wide-card">
+            <h3>Real-time Food Stock Count App</h3>
+            <p>
+              A stock counting system with authentication, role-based access, and user restricted actions.
+            </p>
+            <div class="project-actions">
+              <a href="#" class="project-btn ghost" onclick="openLiveModal(event)">Live</a>
+              <a href="#" class="project-btn" onclick="openLiveModal(event)">Details</a>
+            </div>
+          </article>
+
+          <article class="projects-wide-card">
+            <h3>Eye Saving Reminder App (20-20-20)</h3>
+            <p>
+              A simple wellness tool that reminds you to look away every 20 minutes for 20 seconds.
+            </p>
+            <div class="project-actions">
+              <a href="#" class="project-btn ghost" onclick="openLiveModal(event)">Live</a>
+              <a href="#" class="project-btn" onclick="openLiveModal(event)">Details</a>
+            </div>
+          </article>
+
+          <article class="projects-wide-card">
+            <h3>Siri-like Voice Assistant</h3>
+            <p>
+              A voice assistant that listens for commands to call someone or play music based on user speech.
+            </p>
+            <div class="project-actions">
+              <a href="#" class="project-btn ghost" onclick="openLiveModal(event)">Live</a>
+              <a href="#" class="project-btn" onclick="openLiveModal(event)">Details</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <button class="projects-nav-wide next" type="button" aria-label="Next project">›</button>
+    </div>
+
+    <!-- dots for slider 2 -->
+    <div class="projects-wide-dots" aria-label="Projects working pagination"></div>
+
+
+    <div class="it-card">
+      <h2>Question For You</h2>
+      <p>Your text here...</p>
+    </div>
+
+    <div class="it-card">
+      <h2>Connect With Me</h2>
+      <p>Your text here...</p>
+    </div>
+
+  </section>
+
+  <!-- =========================
+       LIVE BUTTON POPUP (modal)
+       (works for both sliders)
+  ========================= -->
+  <div class="it-modal-overlay" id="liveModal">
+    <div class="it-modal">
+      <h3>🚧 Demo in Progress</h3>
+      <p>
+        Apologies — I’m currently working on a
+        <strong>Graphical User Interface</strong> with a very unique approach.
+        <br><br>
+        The GUI version will be available soon.
+      </p>
+      <button class="it-modal-close" onclick="closeLiveModal()">Close</button>
+    </div>
+  </div>
+
+</body>
+</html>
