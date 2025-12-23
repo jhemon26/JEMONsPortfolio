@@ -1277,3 +1277,73 @@ body.hospitality-page .hos-moment-dot{
     right: auto !important;
   }
 }
+
+
+/* =========================================================
+   ✅ FORCE DESKTOP VIEW ON MOBILE (ADDED FIX)
+   - This keeps your current design/features intact.
+   - It prevents your responsive @media rules from changing layout.
+   - Paste-only solution (no HTML changes required).
+========================================================= */
+
+@media (max-width: 1024px){
+
+  /* Force a desktop-sized canvas on phones */
+  html, body{
+    min-width: 1200px !important;      /* key: stops shrinking into "mobile layout" */
+    overflow-x: auto !important;       /* allow horizontal scroll on mobile */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  /* HOME: keep 2-column feature grid */
+  .feature-section{
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* HOME: keep desktop hero sizing */
+  .hero-title{ font-size: 48px !important; }
+  .hero-subtitle{ font-size: 20px !important; }
+  .hero-btn{ font-size: 18px !important; padding: 14px 34px !important; }
+
+  /* IT: keep slider desktop sizing (override 900/520 rules) */
+  .projects-wide{
+    width: min(780px, 86%) !important;
+    grid-template-columns: 70px 1fr 70px !important;
+    gap: 24px !important;
+  }
+  .projects-nav-wide{
+    width: 58px !important;
+    height: 58px !important;
+    font-size: 34px !important;
+    border-radius: 18px !important;
+  }
+  .projects-wide-card{
+    padding: 24px 28px !important;
+    border-radius: 22px !important;
+  }
+  .projects-wide-card h3{ font-size: 30px !important; }
+  .projects-wide-card p{ font-size: 18px !important; }
+
+  /* IT: keep skills rows as desktop (override 720px wrap) */
+  body.it-page .it-skill-row{
+    flex-wrap: nowrap !important;
+    gap: 22px !important;
+    justify-content: center !important;
+  }
+  body.it-page .it-skill-unit{
+    padding: 8px 14px !important;
+  }
+
+  /* HOSPITALITY: keep desktop grids (override 820px + 900px rules) */
+  .hos-hero-stats{
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+  .hos-grid{
+    grid-template-columns: 1fr 1fr !important;
+  }
+  body.hospitality-page .hos-card:hover,
+  body.hospitality-page .hos-stat:hover{
+    transform: translateY(-6px) !important;
+  }
+}
