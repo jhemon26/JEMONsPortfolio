@@ -3,6 +3,7 @@
    (grouped so you can upgrade section-by-section)
    ========================= */
 
+
 /* =========================
    0) RESET / BASE
    ========================= */
@@ -25,6 +26,7 @@ img, canvas{
   max-width: 100%;
 }
 
+
 /* =========================
    1) THEME COLORS
    ========================= */
@@ -40,6 +42,7 @@ img, canvas{
   --glass: rgba(255, 255, 255, 0.03);
 }
 
+
 /* =========================
    2) PAGE FADE IN
    ========================= */
@@ -53,6 +56,7 @@ img, canvas{
   from{ opacity: 0; }
   to{ opacity: 1; }
 }
+
 
 /* =========================
    3) BACKGROUND CANVAS LAYER
@@ -74,6 +78,7 @@ body > *:not(#starfield-canvas):not(#snowfield-canvas){
   position: relative;
   z-index: 1;
 }
+
 
 /* =========================================================
    4) HOME / GENERAL PAGE
@@ -222,6 +227,7 @@ body.general-dark{
   }
 }
 
+
 /* =========================================================
    5) IT PAGE
    (body.it-page)
@@ -257,6 +263,7 @@ body.it-page > *:not(#starfield-canvas):not(.asteroid-field){
   z-index: 2;
 }
 
+
 /* =========================
    IT HERO
    ========================= */
@@ -279,6 +286,7 @@ body.it-page > *:not(#starfield-canvas):not(.asteroid-field){
   color: #a6adc8;
   opacity: 0.85;
 }
+
 
 /* =========================
    IT TIMELINE WRAPPER
@@ -372,29 +380,6 @@ body.it-page > *:not(#starfield-canvas):not(.asteroid-field){
 .it-card:nth-child(odd)::before{ right: -26px; }
 .it-card:nth-child(even)::before{ left: -26px; }
 
-/* IT mobile (stack cards + avoid weird overflow) */
-@media (max-width: 900px){
-  .it-section{
-    width: min(980px, 92%);
-    padding-left: 18px; /* gives room for the line */
-  }
-
-  .it-section::before{
-    left: 12px;
-    transform: none;
-  }
-
-  .it-card{
-    width: 100%;
-    align-self: stretch !important;
-    margin: 0;
-  }
-
-  .it-card::before{
-    left: 7px !important;
-    right: auto !important;
-  }
-}
 
 /* =========================
    IT PROJECT SLIDER
@@ -606,6 +591,7 @@ body.it-page > *:not(#starfield-canvas):not(.asteroid-field){
   }
 }
 
+
 /* =========================
    IT SKILLS (strip + pyramid)
    ========================= */
@@ -715,6 +701,7 @@ body.it-page .it-skill-unit:hover span{
   }
 }
 
+
 /* =========================
    IT MODAL (popup)
    ========================= */
@@ -795,6 +782,7 @@ body.it-page .it-modal-close:hover{
   transform: translateY(-2px);
 }
 
+
 /* =========================
    🦇 IT BAT (near moon)
    ========================= */
@@ -858,6 +846,7 @@ body.it-page .it-modal-close:hover{
   0%,100%{ transform: scaleX(1); }
   50%{ transform: scaleX(1.45); }
 }
+
 
 /* =========================
    ✨ NEURAL ORB
@@ -985,12 +974,12 @@ body.it-page .it-modal-close:hover{
 @keyframes ringSpin{ to{ transform: rotate(360deg); } }
 @keyframes dotOrbit{ to{ transform: rotate(360deg); } }
 
+
 /* =========================================================
    6) HOSPITALITY PAGE
    (body.hospitality-page)
 ========================================================= */
 
-/* final background (this is the one that wins) */
 body.hospitality-page{
   background: linear-gradient(
     180deg,
@@ -1249,5 +1238,42 @@ body.hospitality-page .hos-moment-dot{
   body.hospitality-page .hos-card:hover,
   body.hospitality-page .hos-stat:hover{
     transform: translateY(-4px);
+  }
+}
+
+
+/* =========================
+   IT MOBILE OVERRIDE
+   keep desktop timeline layout on phones (no stacking)
+   ========================= */
+
+@media (max-width: 900px){
+
+  /* cancel the "mobile padding-left" so the line can sit in the real middle */
+  .it-section{
+    padding-left: 0 !important;
+  }
+
+  /* put the timeline back in the middle */
+  .it-section::before{
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+
+  /* keep the same desktop card width + left/right alternating */
+  .it-card{
+    width: 47.8% !important;
+    align-self: unset !important;
+  }
+
+  /* put the dots back on correct side */
+  .it-card:nth-child(odd)::before{
+    right: -26px !important;
+    left: auto !important;
+  }
+
+  .it-card:nth-child(even)::before{
+    left: -26px !important;
+    right: auto !important;
   }
 }
