@@ -1,88 +1,63 @@
 /* =========================
    script.js
-   FIXED: mobile canvas + page start alignment
+   FULL FIXED VERSION
    ========================= */
 
 
-
-
-   /* =========================================================
-   HARD RESET VIEW (iOS Safari fix: opens centered/correct)
-========================================================= */
-
-(function hardResetViewSetup(){
-  function hardResetView(){
-    // temporarily lock overflow so Safari can't keep sideways offset
-    const prevOverflowX = document.documentElement.style.overflowX;
-    const prevOverflowY = document.documentElement.style.overflowY;
-    document.documentElement.style.overflowX = "hidden";
-    document.documentElement.style.overflowY = "hidden";
-
-    // reset scroll both axes
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-    document.documentElement.scrollLeft = 0;
-    document.body.scrollLeft = 0;
-
-    // restore overflow (your CSS controls it after)
-    requestAnimationFrame(() => {
-      document.documentElement.style.overflowX = prevOverflowX;
-      document.documentElement.style.overflowY = prevOverflowY;
-    });
-  }
-
-  // run early + after layout settles
-  document.addEventListener("DOMContentLoaded", () => {
-    hardResetView();
-    setTimeout(hardResetView, 80);
-    setTimeout(hardResetView, 220);
-    setTimeout(hardResetView, 500);
-  });
-
-  // VERY IMPORTANT for iOS Safari bfcache/back-forward restore
-  window.addEventListener("pageshow", () => {
-    hardResetView();
-    setTimeout(hardResetView, 120);
-  });
-})();
-
-
 /* =========================================================
-   1) PAGE CHANGE (fade out then go) + RESET VIEW
+   0) CENTER PAGE ON LOAD (TOP-CENTER)
+   fixes desktop-width pages opening left on mobile
 ========================================================= */
+
+function centerTopView() {
+  // always go to top
+  window.scrollTo(0, 0);
+
+  const doc = document.documentElement;
+  const maxLeft = doc.scrollWidth - doc.clientWidth;
+
+  if (maxLeft > 0) {
+    const center = Math.round(maxLeft / 2);
+    doc.scrollLeft = center;
+    document.body.scrollLeft = center;
+  } else {
+    doc.scrollLeft = 0;
+    document.body.scrollLeft = 0;
+  }
+}
 
 if ("scrollRestoration" in history) {
   history.scrollRestoration = "manual";
 }
 
-function resetView() {
-  window.scrollTo(0, 0);
-  document.documentElement.scrollTop = 0;
-  document.body.scrollTop = 0;
+document.addEventListener("DOMContentLoaded", () => {
+  centerTopView();
+  setTimeout(centerTopView, 60);
+  setTimeout(centerTopView, 180);
+  setTimeout(centerTopView, 400);
+});
 
-  document.documentElement.scrollLeft = 0;
-  document.body.scrollLeft = 0;
-}
+window.addEventListener("pageshow", () => {
+  centerTopView();
+  setTimeout(centerTopView, 120);
+});
+
+window.addEventListener("orientationchange", () => {
+  setTimeout(centerTopView, 200);
+});
+
+
+/* =========================================================
+   1) PAGE CHANGE (fade + centered start)
+========================================================= */
 
 function goToPage(page) {
-  // hard reset before leaving page (prevents Safari offset bug)
-  window.scrollTo(0, 0);
-  document.documentElement.scrollLeft = 0;
-  document.body.scrollLeft = 0;
-
+  centerTopView();
   document.body.classList.add("fade-out");
   setTimeout(() => {
     window.location.href = page;
   }, 500);
 }
-
-
-document.addEventListener("DOMContentLoaded", () => {
-  resetView();
-  setTimeout(resetView, 60);
-  setTimeout(resetView, 200);
-});
 
 
 /* =========================================================
@@ -170,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* =========================================================
-   3) SLIDERS (UNCHANGED)
+   3) PROJECT SLIDERS (UNCHANGED)
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -193,8 +168,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const dots = slides.map((_, i) => {
       const b = document.createElement("button");
+      b.type = "button";
       b.className = "projects-wide-dot" + (i === 0 ? " active" : "");
-      b.onclick = () => goTo(i);
+      b.addEventListener("click", () => goTo(i));
       dotsWrap.appendChild(b);
       return b;
     });
@@ -238,7 +214,6 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
-  let flakes = [];
   let W = 0, H = 0;
 
   function resize() {
@@ -258,7 +233,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("orientationchange", () => setTimeout(resize, 150));
   window.visualViewport?.addEventListener("resize", resize);
 
-  flakes = Array.from({ length: 240 }, () => ({
+  const flakes = Array.from({ length: 240 }, () => ({
     x: Math.random() * W,
     y: Math.random() * H,
     r: Math.random() * 2.2 + 0.7,
@@ -297,7 +272,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* =========================================================
-   5) LIVE MODAL (UNCHANGED)
+   5) LIVE PROJECT MODAL (UNCHANGED)
 ========================================================= */
 
 function openLiveModal(e){
