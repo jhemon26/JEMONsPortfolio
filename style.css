@@ -1,29 +1,35 @@
 /* =========================
    style.css
-   (same code, just organised + easy comments)
+   (grouped so you can upgrade section-by-section)
    ========================= */
 
+/* =========================
+   0) RESET / BASE
+   ========================= */
 
-/* =========================================================
-   0) RESET + BASE
-========================================================= */
-
-/* reset so nothing random happens */
-* {
+*{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* global font + stop sideways scroll */
-html, body {
+html, body{
   height: 100%;
+  width: 100%;
   font-family: "Inter", sans-serif;
-  overflow-x: hidden;
+  overflow-x: hidden; /* stops that annoying side scroll on mobile */
 }
 
-/* theme colours (change here = changes everywhere) */
-:root {
+/* helps images/canvases never push layout wider */
+img, canvas{
+  max-width: 100%;
+}
+
+/* =========================
+   1) THEME COLORS
+   ========================= */
+
+:root{
   --bg: #1e1e2e;
   --card: #181825;
   --panel: #11111b;
@@ -34,30 +40,27 @@ html, body {
   --glass: rgba(255, 255, 255, 0.03);
 }
 
+/* =========================
+   2) PAGE FADE IN
+   ========================= */
 
-/* =========================================================
-   1) GLOBAL EFFECTS
-========================================================= */
-
-/* page fade in */
-.fade-in {
+.fade-in{
   opacity: 0;
   animation: fadeIn 0.7s ease forwards;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+@keyframes fadeIn{
+  from{ opacity: 0; }
+  to{ opacity: 1; }
 }
 
-
-/* =========================================================
-   2) BACKGROUND CANVASES (STAR + SNOW)
-   - always behind everything
-========================================================= */
+/* =========================
+   3) BACKGROUND CANVAS LAYER
+   (star + snow always fixed)
+   ========================= */
 
 #starfield-canvas,
-#snowfield-canvas {
+#snowfield-canvas{
   position: fixed;
   inset: 0;
   width: 100vw;
@@ -66,24 +69,24 @@ html, body {
   pointer-events: none;
 }
 
-/* everything else above the canvas layers */
-body > *:not(#starfield-canvas):not(#snowfield-canvas) {
+/* everything stays above the canvases */
+body > *:not(#starfield-canvas):not(#snowfield-canvas){
   position: relative;
   z-index: 1;
 }
 
-
 /* =========================================================
-   3) GENERAL / HOME PAGE (body.general-dark)
+   4) HOME / GENERAL PAGE
+   (body.general-dark)
 ========================================================= */
 
-body.general-dark {
+body.general-dark{
   background: var(--bg);
   color: var(--muted);
 }
 
 /* hero */
-.hero {
+.hero{
   width: 100%;
   padding: 120px 0 80px;
   display: flex;
@@ -91,21 +94,21 @@ body.general-dark {
   text-align: center;
 }
 
-.hero-title {
+.hero-title{
   font-size: 48px;
   font-weight: 700;
   color: white;
   margin-bottom: 14px;
 }
 
-.hero-subtitle {
+.hero-subtitle{
   font-size: 20px;
   color: var(--muted);
   margin-bottom: 40px;
 }
 
-/* glowing star */
-.hero-star {
+/* glow star */
+.hero-star{
   width: 22px;
   height: 22px;
   margin: 0 auto 18px;
@@ -119,20 +122,20 @@ body.general-dark {
   animation: starGlow 2.4s infinite ease-in-out;
 }
 
-@keyframes starGlow {
-  0%   { transform: scale(1); opacity: 0.7; }
-  50%  { transform: scale(1.4); opacity: 1; }
-  100% { transform: scale(1); opacity: 0.7; }
+@keyframes starGlow{
+  0%{ transform: scale(1); opacity: 0.7; }
+  50%{ transform: scale(1.4); opacity: 1; }
+  100%{ transform: scale(1); opacity: 0.7; }
 }
 
 /* hero buttons */
-.hero-buttons {
+.hero-buttons{
   display: flex;
   justify-content: center;
   gap: 18px;
 }
 
-.hero-btn {
+.hero-btn{
   padding: 14px 34px;
   font-size: 18px;
   font-weight: 600;
@@ -142,26 +145,26 @@ body.general-dark {
   border: 1px solid var(--border);
 }
 
-.primary-btn {
+.primary-btn{
   background: var(--accent);
   color: #111;
 }
 
-.primary-btn:hover {
+.primary-btn:hover{
   background: var(--accent2);
 }
 
-.secondary-btn {
+.secondary-btn{
   background: var(--card);
   color: var(--accent2);
 }
 
-.secondary-btn:hover {
+.secondary-btn:hover{
   background: var(--panel);
 }
 
-/* feature grid (2 columns) */
-.feature-section {
+/* feature grid */
+.feature-section{
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
@@ -171,7 +174,7 @@ body.general-dark {
   gap: 30px;
 }
 
-.feature-card {
+.feature-card{
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 18px;
@@ -180,72 +183,108 @@ body.general-dark {
   transition: 0.25s;
 }
 
-.feature-card:hover {
+.feature-card:hover{
   background: var(--panel);
   transform: translateY(-4px);
 }
 
-.feature-card h2 {
+.feature-card h2{
   color: var(--accent);
   font-size: 22px;
   margin-bottom: 10px;
 }
 
-.feature-card p {
+.feature-card p{
   color: var(--muted);
   font-size: 16px;
 }
 
-/* extra glow (home only) */
-.general-dark .feature-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 18px rgba(150, 100, 255, 0.5);
-  border-color: rgba(180, 140, 255, 0.7);
-}
-.general-dark .feature-card {
+/* extra glow on home */
+.general-dark .feature-card{
   min-height: 160px;
   font-size: 1.1rem;
 }
 
-/* home mobile */
-@media (max-width: 700px) {
-  .hero-title { font-size: 34px; }
-  .hero-subtitle { font-size: 18px; }
-  .hero-btn { font-size: 16px; padding: 12px 26px; }
+.general-dark .feature-card:hover{
+  transform: translateY(-5px);
+  box-shadow: 0 0 18px rgba(150, 100, 255, 0.5);
+  border-color: rgba(180, 140, 255, 0.7);
 }
 
+/* home mobile */
+@media (max-width: 700px){
+  .hero-title{ font-size: 34px; }
+  .hero-subtitle{ font-size: 18px; }
+  .hero-btn{ font-size: 16px; padding: 12px 26px; }
+
+  .feature-section{
+    grid-template-columns: 1fr; /* 2 cols -> 1 col */
+  }
+}
 
 /* =========================================================
-   4) IT PAGE (body.it-page)
+   5) IT PAGE
+   (body.it-page)
 ========================================================= */
 
-body.it-page {
+body.it-page{
   background: #0B0B0F;
   color: white;
 }
 
-/* hero */
-.it-hero {
+/* starfield behind everything */
+#starfield-canvas{
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* if you ever use asteroids */
+.asteroid-field{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* keep IT content above background layers */
+body.it-page > *:not(#starfield-canvas):not(.asteroid-field){
+  position: relative;
+  z-index: 2;
+}
+
+/* =========================
+   IT HERO
+   ========================= */
+
+.it-hero{
   text-align: center;
   padding-top: 120px;
   margin-bottom: 60px;
-  position: relative; /* bat sits in here */
+  position: relative;
 }
 
-.it-title {
+.it-title{
   font-size: 48px;
   font-weight: 800;
   color: white;
 }
 
-.it-subtitle {
+.it-subtitle{
   font-size: 20px;
   color: #a6adc8;
   opacity: 0.85;
 }
 
-/* timeline wrapper */
-.it-section {
+/* =========================
+   IT TIMELINE WRAPPER
+   ========================= */
+
+.it-section{
   width: 900px;
   max-width: 92%;
   margin: 0 auto 140px;
@@ -258,7 +297,7 @@ body.it-page {
 }
 
 /* timeline line */
-.it-section::before {
+.it-section::before{
   content: "";
   position: absolute;
   top: 0;
@@ -270,7 +309,7 @@ body.it-page {
 }
 
 /* timeline cards */
-.it-card {
+.it-card{
   background: #16161F;
   border: 1px solid #37294A;
   border-radius: 18px;
@@ -283,43 +322,43 @@ body.it-page {
     inset 0 0 22px rgba(255,255,255,0.03);
 
   transition: 0.3s ease;
-  position: relative; /* dot needs this */
+  position: relative;
 }
 
-.it-card:hover {
+.it-card:hover{
   background: #1f1f2f;
   transform: translateY(-6px);
   box-shadow: 0 0 28px rgba(255, 80, 255, 0.35);
 }
 
-.it-card h2 {
+.it-card h2{
   color: #cba6f7;
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 10px;
 }
 
-.it-card p {
+.it-card p{
   color: #a6adc8;
   font-size: 16px;
   line-height: 1.5;
 }
 
 /* left / right alternating */
-.it-card:nth-child(odd) {
+.it-card:nth-child(odd){
   align-self: flex-start;
   margin-right: auto;
   margin-left: 0;
 }
 
-.it-card:nth-child(even) {
+.it-card:nth-child(even){
   align-self: flex-end;
   margin-left: auto;
   margin-right: 0;
 }
 
 /* timeline dot */
-.it-card::before {
+.it-card::before{
   content: "";
   position: absolute;
   top: 28px;
@@ -330,34 +369,38 @@ body.it-page {
   box-shadow: 0 0 12px rgba(203, 166, 247, 0.6);
 }
 
-.it-card:nth-child(odd)::before { right: -26px; }
-.it-card:nth-child(even)::before { left: -26px; }
+.it-card:nth-child(odd)::before{ right: -26px; }
+.it-card:nth-child(even)::before{ left: -26px; }
 
-/* IT mobile layout */
-@media (max-width: 900px) {
-  .it-section::before {
-    left: 16px;
+/* IT mobile (stack cards + avoid weird overflow) */
+@media (max-width: 900px){
+  .it-section{
+    width: min(980px, 92%);
+    padding-left: 18px; /* gives room for the line */
+  }
+
+  .it-section::before{
+    left: 12px;
     transform: none;
   }
 
-  .it-card {
+  .it-card{
     width: 100%;
     align-self: stretch !important;
+    margin: 0;
   }
 
-  .it-card::before {
-    left: 11px !important;
+  .it-card::before{
+    left: 7px !important;
     right: auto !important;
   }
 }
 
+/* =========================
+   IT PROJECT SLIDER
+   ========================= */
 
-/* =========================================================
-   4.1) IT PROJECT SLIDER (both sliders use this)
-========================================================= */
-
-/* sticky heading inside the first slide */
-.projects-card-heading {
+.projects-card-heading{
   font-size: 18px;
   font-weight: 600;
   color: #cba6f7;
@@ -377,8 +420,7 @@ body.it-page {
   z-index: 2;
 }
 
-/* slider wrapper */
-.projects-wide {
+.projects-wide{
   position: relative;
   width: min(780px, 86%);
   margin: 18px auto 0;
@@ -389,8 +431,8 @@ body.it-page {
   z-index: 2;
 }
 
-/* hide the timeline line behind the slider */
-.projects-wide::before {
+/* hides timeline line behind slider */
+.projects-wide::before{
   content: "";
   position: absolute;
   left: 50%;
@@ -403,19 +445,19 @@ body.it-page {
   z-index: 0;
 }
 
-.projects-wide-viewport {
+.projects-wide-viewport{
   overflow: hidden;
   border-radius: 20px;
   z-index: 1;
 }
 
-.projects-wide-track {
+.projects-wide-track{
   display: flex;
   transition: transform 0.45s ease;
   will-change: transform;
 }
 
-.projects-wide-card {
+.projects-wide-card{
   min-width: 100%;
   background: #16161F;
   border: 1px solid rgba(55, 41, 74, 0.95);
@@ -428,7 +470,7 @@ body.it-page {
 }
 
 /* slide headings */
-.projects-wide-card h3 {
+.projects-wide-card h3{
   color: #cba6f7;
   font-size: 30px;
   font-weight: 800;
@@ -436,7 +478,7 @@ body.it-page {
 }
 
 /* slide text */
-.projects-wide-card p {
+.projects-wide-card p{
   color: #a6adc8;
   font-size: 18px;
   line-height: 1.45;
@@ -444,13 +486,13 @@ body.it-page {
 }
 
 /* buttons row */
-.projects-wide-card .project-actions {
+.projects-wide-card .project-actions{
   margin-top: 16px;
   display: flex;
   gap: 14px;
 }
 
-.projects-wide-card .project-btn {
+.projects-wide-card .project-btn{
   display: inline-block;
   padding: 10px 18px;
   border-radius: 14px;
@@ -462,22 +504,22 @@ body.it-page {
   transition: 0.25s ease;
 }
 
-.projects-wide-card .project-btn:hover {
+.projects-wide-card .project-btn:hover{
   background: rgba(171,159,242,0.95);
   transform: translateY(-2px);
 }
 
-.projects-wide-card .project-btn.ghost {
+.projects-wide-card .project-btn.ghost{
   background: transparent;
   color: #cba6f7;
 }
 
-.projects-wide-card .project-btn.ghost:hover {
+.projects-wide-card .project-btn.ghost:hover{
   background: rgba(31,31,47,0.7);
 }
 
-/* arrow buttons */
-.projects-nav-wide {
+/* arrows */
+.projects-nav-wide{
   width: 58px;
   height: 58px;
   border-radius: 18px;
@@ -491,14 +533,14 @@ body.it-page {
   z-index: 2;
 }
 
-.projects-nav-wide:hover {
+.projects-nav-wide:hover{
   background: rgba(31,31,47,0.98);
   transform: translateY(-2px);
   box-shadow: 0 0 18px rgba(150, 100, 255, 0.35);
 }
 
-/* dots under slider */
-.projects-wide-dots {
+/* dots */
+.projects-wide-dots{
   width: 100%;
   display: flex;
   justify-content: center;
@@ -506,7 +548,7 @@ body.it-page {
   margin: 14px 0 20px;
 }
 
-.projects-wide-dot {
+.projects-wide-dot{
   width: 9px;
   height: 9px;
   border-radius: 50%;
@@ -516,67 +558,246 @@ body.it-page {
   transition: 0.25s ease;
 }
 
-.projects-wide-dot.active {
+.projects-wide-dot.active{
   background: rgba(203,166,247,0.95);
   box-shadow: 0 0 12px rgba(203,166,247,0.55);
 }
 
+/* keep the project titles smaller (not the main heading) */
+.projects-wide-card h3:not(.projects-card-heading){
+  font-size: 20px;
+}
+
 /* slider mobile */
-@media (max-width: 900px) {
-  .projects-wide {
+@media (max-width: 900px){
+  .projects-wide{
     width: 95%;
     grid-template-columns: 56px 1fr 56px;
     gap: 16px;
   }
-  .projects-nav-wide {
+  .projects-nav-wide{
     width: 50px;
     height: 50px;
     font-size: 28px;
     border-radius: 16px;
   }
-  .projects-wide-card h3 { font-size: 24px; }
-  .projects-wide-card p { font-size: 16px; }
+  .projects-wide-card h3{ font-size: 24px; }
+  .projects-wide-card p{ font-size: 16px; }
 }
 
-/* keep project titles smaller (not the main heading) */
-.projects-wide-card h3:not(.projects-card-heading){
-  font-size: 20px;
+/* extra small phones (fix squeeze + make it feel nicer) */
+@media (max-width: 520px){
+  .projects-wide{
+    grid-template-columns: 44px 1fr 44px;
+    gap: 10px;
+    width: 98%;
+  }
+
+  .projects-nav-wide{
+    width: 42px;
+    height: 42px;
+    font-size: 24px;
+    border-radius: 14px;
+  }
+
+  .projects-wide-card{
+    padding: 18px 16px;
+    border-radius: 18px;
+  }
 }
 
+/* =========================
+   IT SKILLS (strip + pyramid)
+   ========================= */
 
-/* =========================================================
-   4.2) IT BACKGROUND LAYERS (starfield + asteroids)
-========================================================= */
-
-/* starfield behind everything */
-#starfield-canvas{
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* asteroid layer (only matters if that div exists) */
-.asteroid-field{
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 1;
-}
-
-/* IT content above those layers */
-body.it-page > *:not(#starfield-canvas):not(.asteroid-field){
+body.it-page .it-skills-line{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+  margin: 26px auto 18px;
+  width: min(980px, 92%);
   position: relative;
   z-index: 2;
 }
 
+body.it-page .it-skills-pyramid{
+  width: min(980px, 92%);
+  margin: 0 auto 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  z-index: 2;
+}
 
-/* =========================================================
-   4.3) IT BAT
-========================================================= */
+body.it-page .it-skill-row{
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  flex-wrap: nowrap;
+}
+
+body.it-page .it-skill-unit{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(55, 41, 74, 0.65);
+  background: rgba(22,22,31,0.55);
+  backdrop-filter: blur(10px);
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    background .25s ease,
+    border-color .25s ease;
+}
+
+body.it-page .it-skill-unit span{
+  font-weight: 700;
+  color: rgba(230,230,255,.85);
+  transition: color .25s ease, text-shadow .25s ease;
+}
+
+/* icon glow (your last settings) */
+body.it-page .it-skill-icon{
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+
+  filter:
+    drop-shadow(0 0 8px rgba(203,166,247,0.85))
+    drop-shadow(0 0 16px rgba(171,159,242,0.45));
+
+  transition: transform .25s ease, filter .25s ease;
+
+  animation: skillGlowPulse 4.2s ease-in-out infinite;
+}
+
+body.it-page .it-skill-unit:hover{
+  transform: scale(1.14);
+  background: rgba(203,166,247,.12);
+  border-color: rgba(203,166,247,.8);
+  box-shadow: 0 0 18px rgba(203,166,247,.35);
+}
+
+body.it-page .it-skill-unit:hover .it-skill-icon{
+  transform: scale(1.28);
+  filter:
+    drop-shadow(0 0 12px rgba(203,166,247,1))
+    drop-shadow(0 0 26px rgba(171,159,242,.95))
+    drop-shadow(0 0 44px rgba(203,166,247,.65));
+}
+
+body.it-page .it-skill-unit:hover span{
+  color: #cba6f7;
+  text-shadow: 0 0 12px rgba(203,166,247,.65);
+}
+
+@keyframes skillGlowPulse{
+  0%{ filter: drop-shadow(0 0 8px rgba(203,166,247,.65)); }
+  50%{ filter: drop-shadow(0 0 14px rgba(171,159,242,.85)); }
+  100%{ filter: drop-shadow(0 0 8px rgba(203,166,247,.65)); }
+}
+
+/* skills mobile (this is the big mobile fix for the pyramid) */
+@media (max-width: 720px){
+  body.it-page .it-skill-row{
+    gap: 14px;
+    flex-wrap: wrap; /* lets pills drop to next line instead of overflowing */
+    justify-content: center;
+  }
+  body.it-page .it-skill-unit{
+    padding: 7px 12px;
+  }
+}
+
+/* =========================
+   IT MODAL (popup)
+   ========================= */
+
+body.it-page .it-modal-overlay{
+  position: fixed !important;
+  inset: 0;
+  z-index: 99999 !important;
+
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(6, 6, 14, 0.8);
+  backdrop-filter: blur(6px);
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity 0.25s ease;
+}
+
+body.it-page .it-modal-overlay.active{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body.it-page .it-modal{
+  position: relative;
+  z-index: 100000;
+
+  background: #16161F;
+  border: 1px solid rgba(203,166,247,0.6);
+  border-radius: 20px;
+
+  padding: 28px 32px;
+  width: min(420px, 90%);
+  text-align: center;
+
+  box-shadow:
+    0 0 40px rgba(203,166,247,0.35),
+    0 25px 60px rgba(0,0,0,0.7);
+
+  transform: scale(0.92);
+  transition: transform 0.25s ease;
+}
+
+body.it-page .it-modal-overlay.active .it-modal{
+  transform: scale(1);
+}
+
+body.it-page .it-modal h3{
+  color: #cba6f7;
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+body.it-page .it-modal p{
+  color: #a6adc8;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+
+body.it-page .it-modal-close{
+  padding: 10px 22px;
+  border-radius: 14px;
+  border: 1px solid rgba(203,166,247,0.6);
+  background: rgba(203,166,247,0.15);
+  color: #cba6f7;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+body.it-page .it-modal-close:hover{
+  background: rgba(203,166,247,0.3);
+  transform: translateY(-2px);
+}
+
+/* =========================
+   🦇 IT BAT (near moon)
+   ========================= */
 
 .it-bat{
   position: absolute;
@@ -626,21 +847,21 @@ body.it-page > *:not(#starfield-canvas):not(.asteroid-field){
 }
 
 @keyframes batFlyLoop{
-  0%   { transform: translateX(-50%) translate(22px, 2px) scale(2.0) rotate(-6deg); opacity: .95; }
-  25%  { transform: translateX(-50%) translate(30px,-6px) scale(2.05) rotate(6deg); opacity: 1; }
-  50%  { transform: translateX(-50%) translate(18px,-12px) scale(2.0) rotate(-4deg); opacity: .95; }
-  75%  { transform: translateX(-50%) translate(10px,-4px) scale(2.05) rotate(5deg); opacity: 1; }
-  100% { transform: translateX(-50%) translate(22px, 2px) scale(2.0) rotate(-6deg); opacity: .95; }
+  0%{ transform: translateX(-50%) translate(22px, 2px) scale(2.0) rotate(-6deg); opacity: .95; }
+  25%{ transform: translateX(-50%) translate(30px,-6px) scale(2.05) rotate(6deg); opacity: 1; }
+  50%{ transform: translateX(-50%) translate(18px,-12px) scale(2.0) rotate(-4deg); opacity: .95; }
+  75%{ transform: translateX(-50%) translate(10px,-4px) scale(2.05) rotate(5deg); opacity: 1; }
+  100%{ transform: translateX(-50%) translate(22px, 2px) scale(2.0) rotate(-6deg); opacity: .95; }
 }
+
 @keyframes batFlap{
   0%,100%{ transform: scaleX(1); }
   50%{ transform: scaleX(1.45); }
 }
 
-
-/* =========================================================
-   4.4) IT NEURAL ORB
-========================================================= */
+/* =========================
+   ✨ NEURAL ORB
+   ========================= */
 
 .neural-orb-wrap{
   display: flex;
@@ -724,7 +945,6 @@ body.it-page > *:not(#starfield-canvas):not(.asteroid-field){
   filter: blur(0.25px);
 }
 
-/* orbit dots */
 .orb-dot{
   position:absolute;
   top: 50%;
@@ -758,224 +978,42 @@ body.it-page > *:not(#starfield-canvas):not(.asteroid-field){
 }
 
 @keyframes orbFloat{
-  0%   { transform: translateY(0) rotateX(0deg) rotateY(0deg); }
-  50%  { transform: translateY(-7px) rotateX(5deg) rotateY(-7deg); }
-  100% { transform: translateY(0) rotateX(0deg) rotateY(0deg); }
+  0%{ transform: translateY(0) rotateX(0deg) rotateY(0deg); }
+  50%{ transform: translateY(-7px) rotateX(5deg) rotateY(-7deg); }
+  100%{ transform: translateY(0) rotateX(0deg) rotateY(0deg); }
 }
-@keyframes ringSpin{ to { transform: rotate(360deg); } }
-@keyframes dotOrbit{ to { transform: rotate(360deg); } }
-
+@keyframes ringSpin{ to{ transform: rotate(360deg); } }
+@keyframes dotOrbit{ to{ transform: rotate(360deg); } }
 
 /* =========================================================
-   4.5) IT SKILLS STRIP + PYRAMID
+   6) HOSPITALITY PAGE
+   (body.hospitality-page)
 ========================================================= */
 
-/* top strip */
-body.it-page .it-skills-line{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 22px;
-  flex-wrap: wrap;
-  margin: 26px auto 18px;
-  width: min(980px, 92%);
-  position: relative;
-  z-index: 2;
-}
+/* final background (this is the one that wins) */
+body.hospitality-page{
+  background: linear-gradient(
+    180deg,
+    #1f2d2b 0%,
+    #172221 50%,
+    #0f1918 100%
+  );
+  color: #e9f4f2;
 
-/* pyramid wrapper */
-body.it-page .it-skills-pyramid{
-  width: min(980px, 92%);
-  margin: 0 auto 34px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  position: relative;
-  z-index: 2;
-}
+  --hos-bg-glass: rgba(12, 16, 20, 0.55);
+  --hos-bg-glass-soft: rgba(12, 16, 20, 0.35);
 
-/* each row */
-body.it-page .it-skill-row{
-  display: flex;
-  justify-content: center;
-  gap: 22px;
-  flex-wrap: nowrap;
-}
+  --hos-border: rgba(255,255,255,0.12);
+  --hos-border-hover: rgba(255,255,255,0.22);
 
-/* pill */
-body.it-page .it-skill-unit{
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
-  border-radius: 14px;
-  border: 1px solid rgba(55, 41, 74, 0.65);
-  background: rgba(22,22,31,0.55);
-  backdrop-filter: blur(10px);
+  --hos-title: #eaf4f2;
+  --hos-text: rgba(220,235,232,0.75);
 
-  transition:
-    transform .25s ease,
-    box-shadow .25s ease,
-    background .25s ease,
-    border-color .25s ease;
-}
-
-/* skill name */
-body.it-page .it-skill-unit span{
-  font-weight: 700;
-  color: rgba(230,230,255,.85);
-  transition: color .25s ease, text-shadow .25s ease;
-}
-
-/* icon glow */
-body.it-page .it-skill-icon{
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-
-  filter:
-    drop-shadow(0 0 8px rgba(203,166,247,0.85))
-    drop-shadow(0 0 16px rgba(171,159,242,0.45));
-
-  transition: transform .25s ease, filter .25s ease;
-  animation: skillGlowPulse 4.2s ease-in-out infinite;
-}
-
-/* hover pill */
-body.it-page .it-skill-unit:hover{
-  transform: scale(1.14);
-  background: rgba(203,166,247,.12);
-  border-color: rgba(203,166,247,.8);
-  box-shadow: 0 0 18px rgba(203,166,247,.35);
-}
-
-/* hover icon */
-body.it-page .it-skill-unit:hover .it-skill-icon{
-  transform: scale(1.28);
-  filter:
-    drop-shadow(0 0 12px rgba(203,166,247,1))
-    drop-shadow(0 0 26px rgba(171,159,242,.95))
-    drop-shadow(0 0 44px rgba(203,166,247,.65));
-}
-
-/* hover text */
-body.it-page .it-skill-unit:hover span{
-  color: #cba6f7;
-  text-shadow: 0 0 12px rgba(203,166,247,.65);
-}
-
-/* breathing glow */
-@keyframes skillGlowPulse{
-  0%   { filter: drop-shadow(0 0 8px rgba(203,166,247,.65)); }
-  50%  { filter: drop-shadow(0 0 14px rgba(171,159,242,.85)); }
-  100% { filter: drop-shadow(0 0 8px rgba(203,166,247,.65)); }
-}
-
-/* skills mobile */
-@media (max-width: 720px){
-  body.it-page .it-skill-row{
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-  body.it-page .it-skill-unit{
-    padding: 7px 12px;
-  }
-}
-
-
-/* =========================================================
-   4.6) IT LIVE MODAL (popup)
-   - this needs the big z-index because of the canvas z-index rule
-========================================================= */
-
-body.it-page .it-modal-overlay{
-  position: fixed !important;
-  inset: 0;
-  z-index: 99999 !important;
-
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-
-  background: rgba(6, 6, 14, 0.8);
-  backdrop-filter: blur(6px);
-
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease;
-}
-
-body.it-page .it-modal-overlay.active{
-  opacity: 1;
-  pointer-events: auto;
-}
-
-body.it-page .it-modal{
-  position: relative;
-  z-index: 100000;
-
-  background: #16161F;
-  border: 1px solid rgba(203,166,247,0.6);
-  border-radius: 20px;
-
-  padding: 28px 32px;
-  width: min(420px, 90%);
-  text-align: center;
-
-  box-shadow:
-    0 0 40px rgba(203,166,247,0.35),
-    0 25px 60px rgba(0,0,0,0.7);
-
-  transform: scale(0.92);
-  transition: transform 0.25s ease;
-}
-
-body.it-page .it-modal-overlay.active .it-modal{
-  transform: scale(1);
-}
-
-body.it-page .it-modal h3{
-  color: #cba6f7;
-  font-size: 22px;
-  margin-bottom: 12px;
-}
-
-body.it-page .it-modal p{
-  color: #a6adc8;
-  font-size: 15px;
-  line-height: 1.6;
-  margin-bottom: 22px;
-}
-
-body.it-page .it-modal-close{
-  padding: 10px 22px;
-  border-radius: 14px;
-  border: 1px solid rgba(203,166,247,0.6);
-  background: rgba(203,166,247,0.15);
-  color: #cba6f7;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background 0.25s ease, transform 0.25s ease;
-}
-
-body.it-page .it-modal-close:hover{
-  background: rgba(203,166,247,0.3);
-  transform: translateY(-2px);
-}
-
-
-/* =========================================================
-   5) HOSPITALITY PAGE (body.hospitality-page)
-========================================================= */
-
-/* base (gets overridden later by the gradient one) */
-body.hospitality-page {
-  background: var(--bg);
-  color: var(--muted);
+  --hos-accent: #9ad9c7;
 }
 
 /* hero layout */
-.hos-hero {
+.hos-hero{
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -992,21 +1030,24 @@ body.hospitality-page {
   height: 64px;
   margin: 0 auto 16px;
   border-radius: 50%;
+
   background: radial-gradient(circle,
     rgba(255,234,200,0.9) 0%,
     rgba(255,214,160,0.55) 35%,
     rgba(255,214,160,0.0) 65%
   );
+
   box-shadow:
     0 0 18px rgba(255,214,160,0.45),
     0 0 36px rgba(255,214,160,0.25);
+
   animation: hosAuraFloat 4.5s ease-in-out infinite;
 }
 
 @keyframes hosAuraFloat{
-  0% { transform: translateY(0); opacity:.8; }
-  50% { transform: translateY(-6px); opacity:1; }
-  100% { transform: translateY(0); opacity:.8; }
+  0%{ transform: translateY(0); opacity:.8; }
+  50%{ transform: translateY(-6px); opacity:1; }
+  100%{ transform: translateY(0); opacity:.8; }
 }
 
 /* petals */
@@ -1022,10 +1063,12 @@ body.hospitality-page {
   width: 6px;
   height: 6px;
   border-radius: 50%;
+
   background: rgba(255, 214, 160, 0.85);
   box-shadow:
     0 0 10px rgba(255,214,160,.6),
     0 0 22px rgba(255,214,160,.35);
+
   animation: petalFloat linear infinite;
 }
 
@@ -1039,7 +1082,7 @@ body.hospitality-page {
 }
 
 /* stats */
-.hos-hero-stats {
+.hos-hero-stats{
   margin-top: 22px;
   width: min(980px, 92%);
   display: grid;
@@ -1047,148 +1090,7 @@ body.hospitality-page {
   gap: 18px;
 }
 
-.hos-stat {
-  background: rgba(24,24,37,0.55);
-  border: 1px solid rgba(49,50,68,0.75);
-  border-radius: 18px;
-  padding: 18px 16px;
-  box-shadow: 0 6px 22px rgba(0,0,0,0.25);
-}
-
-.hos-stat-num {
-  font-size: 26px;
-  font-weight: 900;
-  color: #fff;
-}
-
-.hos-stat-label {
-  margin-top: 6px;
-  font-size: 14px;
-  color: var(--muted);
-  opacity: 0.9;
-}
-
-/* layout wrappers */
-.hos-wrap {
-  width: min(980px, 92%);
-  margin: 0 auto 120px;
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-}
-
-.hos-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 22px;
-}
-
-/* cards */
-.hos-card {
-  background: rgba(24,24,37,0.75);
-  border: 1px solid rgba(49,50,68,0.85);
-  border-radius: 18px;
-  padding: 26px 26px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.28);
-  transition: 0.25s ease;
-}
-
-.hos-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(180, 140, 255, 0.65);
-  box-shadow: 0 0 18px rgba(150, 100, 255, 0.35);
-}
-
-.hos-card h2 {
-  color: var(--accent);
-  font-size: 22px;
-  margin-bottom: 10px;
-}
-
-.hos-card p {
-  color: var(--muted);
-  font-size: 16px;
-  line-height: 1.55;
-}
-
-/* chips */
-.hos-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.hos-chip {
-  padding: 10px 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(49,50,68,0.85);
-  background: rgba(17,17,27,0.55);
-  color: var(--muted);
-  font-weight: 600;
-}
-
-/* moments */
-.hos-moments {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin-top: 12px;
-}
-
-.hos-moment {
-  display: grid;
-  grid-template-columns: 14px 1fr;
-  gap: 14px;
-  align-items: start;
-}
-
-.hos-moment-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  margin-top: 7px;
-  background: rgba(203,166,247,0.95);
-  box-shadow: 0 0 12px rgba(203,166,247,0.45);
-}
-
-.hos-moment-body h3 {
-  color: #fff;
-  font-size: 16px;
-  margin-bottom: 4px;
-}
-
-/* hospitality mobile */
-@media (max-width: 820px) {
-  .hos-hero-stats { grid-template-columns: 1fr; }
-  .hos-grid { grid-template-columns: 1fr; }
-}
-
-/* final hospitality background (this wins) */
-body.hospitality-page {
-  background: linear-gradient(
-    180deg,
-    #1f2d2b 0%,
-    #172221 50%,
-    #0f1918 100%
-  );
-  color: #e9f4f2;
-}
-
-/* luxury overrides */
-body.hospitality-page{
-  --hos-bg-glass: rgba(12, 16, 20, 0.55);
-  --hos-bg-glass-soft: rgba(12, 16, 20, 0.35);
-
-  --hos-border: rgba(255,255,255,0.12);
-  --hos-border-hover: rgba(255,255,255,0.22);
-
-  --hos-title: #eaf4f2;
-  --hos-text: rgba(220,235,232,0.75);
-
-  --hos-accent: #9ad9c7;
-}
-
+/* cards + stats glass */
 body.hospitality-page .hos-card,
 body.hospitality-page .hos-stat{
   position: relative;
@@ -1235,8 +1137,43 @@ body.hospitality-page .hos-card:hover,
 body.hospitality-page .hos-stat:hover{
   transform: translateY(-6px);
   border-color: var(--hos-border-hover);
-  box-shadow:
-    0 26px 60px rgba(0,0,0,0.65);
+  box-shadow: 0 26px 60px rgba(0,0,0,0.65);
+}
+
+/* stats text */
+.hos-stat{
+  padding: 18px 16px;
+}
+
+.hos-stat-num{
+  font-size: 34px;
+  font-weight: 800;
+  color: var(--hos-title);
+}
+
+.hos-stat-label{
+  margin-top: 6px;
+  color: var(--hos-text);
+  font-size: 15px;
+}
+
+/* content wrap */
+.hos-wrap{
+  width: min(980px, 92%);
+  margin: 0 auto 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.hos-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+.hos-card{
+  padding: 26px 26px;
 }
 
 body.hospitality-page .hos-card h2{
@@ -1251,15 +1188,12 @@ body.hospitality-page .hos-card p{
   line-height: 1.6;
 }
 
-body.hospitality-page .hos-stat-num{
-  font-size: 34px;
-  font-weight: 800;
-  color: var(--hos-title);
-}
-
-body.hospitality-page .hos-stat-label{
-  color: var(--hos-text);
-  font-size: 15px;
+/* chips */
+.hos-chips{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 body.hospitality-page .hos-chip{
@@ -1268,6 +1202,7 @@ body.hospitality-page .hos-chip{
   color: rgba(235,245,242,0.8);
   padding: 8px 14px;
   border-radius: 999px;
+
   transition:
     background 220ms ease,
     border-color 220ms ease,
@@ -1278,6 +1213,14 @@ body.hospitality-page .hos-chip:hover{
   background: rgba(255,255,255,0.10);
   border-color: rgba(154,217,199,0.45);
   transform: translateY(-2px);
+}
+
+/* moments */
+.hos-moments{
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 12px;
 }
 
 body.hospitality-page .hos-moment{
@@ -1294,6 +1237,12 @@ body.hospitality-page .hos-moment-dot{
   border-radius: 50%;
   background: var(--hos-accent);
   box-shadow: 0 0 12px rgba(154,217,199,0.35);
+}
+
+/* hospitality mobile */
+@media (max-width: 820px){
+  .hos-hero-stats{ grid-template-columns: 1fr; }
+  .hos-grid{ grid-template-columns: 1fr; }
 }
 
 @media (max-width: 900px){
